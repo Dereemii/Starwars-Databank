@@ -1,0 +1,63 @@
+
+
+.heart{
+  float: right;
+}
+
+.heart:hover{
+  color: yellow;
+}
+
+.left{
+  float: left
+}
+
+body{
+  background: black;
+  background-image: url(../styles/backgroundsw.jpg);
+  font-family: DIN, Helvetica, Arial, sans-serif;
+  color: #aaa;
+}
+
+.starswars-nav{
+  padding-left: 25em;
+}
+
+.bg-starwars{
+  background-color: black;
+}
+
+.swg{
+  color: white;
+
+}
+
+.bg-body-card{
+  background-color:#282727;
+  border-top: solid #9e4f60 2px;
+  color: white;
+  background-image: url(../styles/bg-card.png);
+  background-size: 7px;
+  background-repeat: repeat-x;
+  background-position: top left;
+}
+
+.card{
+  border: none;
+  
+}
+
+.swg-lightsabers {
+  color: white;
+  font-size: 50px;
+}
+
+.btn-outline-primary{
+  color: #9e4f60;
+  border-color: #9e4f60
+}
+
+.btn-outline-primary:hover{
+  background-color:darkred;
+  border-color:#9e4f60;
+}
