@@ -1,49 +1,47 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			people: null,
-			planets: null
+			people: [],
+			planets: [],	
+			favorites: [],	
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getPeople: async url => {
+				const response = await fetch(url);
+				const data = await response.json();
+				setStore({
+					people: data.results,
+					previouspeople: data.previous,
+					nextpeople: data.next
+				})
+				
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			getPlanets: async url => {
+				const response = await fetch(url);
+				const data = await response.json();
+				setStore({
+					planets: data.results,
+					previousplanet: data.previous,
+					nextplanet: data.next
+				})
 			},
-			changeColor: (index, color) => {
-				//get the store
+			getFavorites: favorite =>{
 				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			},
-			getPeople(url) {
-				fetch(url)
-					.then(response => {
-						return response.json();
-					})
-					.then(data => setStore({ people: data.results }));
-			},
-			getPlanets(url) {
-				fetch(url)
-					.then(response => {
-						return response.json();
-					})
-					.then(data => setStore({ planets: data.results }));
-			}
-		}
-	};
+				store.favorites.push(favorite)
+				setStore({
+					...store.favorites
+				})
+			},	
+			removeFavorites: (favorite, i) => {
+				const store = getStore();
+				store.favorites = store.favorites.filter((favorite)=> favorite.favorite !== store.favorites[i].favorite)
+				setStore({
+					...store.favorites
+				})
+				/* console.log(store.favorites) */
+			}	
+	},
 };
+}
 
 export default getState;

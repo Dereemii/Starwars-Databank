@@ -1,141 +1,54 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Favorites } from "../component/favorites";
 
-export const Characters = () => {
-    const { store, actions } = useContext(Context);
-    useEffect(() => {
-        actions.getPeople("https://swapi.dev/api/people/");
-    }, []);
 
-    return (
-        <>
-            <div className="container">
-            <h1 className="characters text-white">Characters <i className="swg swg-lightsabers  swg-6x m-0 "></i></h1>
-            <div className="card-deck">
-                <div className="card">
-                    <img src="img/Luke Skywalker.jpg" className="card-img-top" alt="" />
-                    <div className="card-body bg-body-card">
-                        <h5 className="card-title">{store.people !== null ? store.people[0].name : "Personaje"}</h5>
-                        <p className="card-text">
-                            <p> Height: {store.people !== null ? store.people[0].gender : "Height"}</p>
-                            <p> Eye Color: {store.people !== null ? store.people[0].eye_color : "Eye"}</p>
-                            <p> Hair Color: {store.people !== null ? store.people[0].hair_color : "Hair"}</p>
-						</p>
-                        <p className="card-text">
-                            <button type="button" className="btn btn-outline-primary left">Learn More!</button>
-                            <button type="button" className="btn btn-outline-warning heart">&#10084;</button>
-                        </p>
+function Characters() {
+
+  const { store, actions } = useContext(Context);
+
+  return (
+    <div className="container">
+    <h1 className="characters text-white">Characters <i className="swg swg-lightsabers  swg-6x m-0 "></i></h1>
+      <div className="row row-col-5 row-col-5-sm-2 row-col-sm-4 pt-4">
+        {store.people.map((item, index,) => (
+          <div className="people col-3 mb-4" key={item.name}>
+            <div className="card h-100 border-dark">
+              <img
+                src={`/img/${item.name}.jpg`}
+                className="card-img-top border-danger border-bottom"
+                alt=""
+              />
+              <div className="card-body bg-body-card">
+                <h5 className="card-title">{item.name} </h5>
+                <ul className="caracteristicas">
+                  <li> height : {item.height}</li>
+                  <li> mass : {item.mass}</li>
+                  <li> hair color : {item.hair_color}</li>
+                  <li> gender : {item.gender}</li>
+                </ul>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-8">
+                      <button
+                        type="button"
+                        className="LearnMore btn btn-outline-primary"
+                      >
+                        <Link to={`/character/${index + 1}`}>Learn more!</Link>
+                      </button>
                     </div>
-                </div>
-                <div className="card">
-                    <img src="img/C-3PO.jpg" className="card-img-top" alt="" />
-                    <div className="card-body bg-body-card">
-                        <h5 className="card-title">{store.people !== null ? store.people[1].name : "Personaje"}</h5>
-                        <p className="card-text">
-                            <p> Height: {store.people !== null ? store.people[1].gender : "Height"}</p>
-                            <p> Eye Color: {store.people !== null ? store.people[1].eye_color : "Eye"}</p>
-                            <p> Hair Color: {store.people !== null ? store.people[1].hair_color : "Hair"}</p>
-						</p>
-                        <p className="card-text">
-                            <button type="button" className="btn btn-outline-primary left">Learn More!</button>
-                            <button type="button" className="btn btn-outline-warning heart">&#10084;</button>
-                        </p>
+                    <div className="col-4">
+                    <Favorites favorite={item.name}/>
                     </div>
+                  </div>
                 </div>
-                <div className="card">
-                    <img src="img\R2-D2.jpg" className="card-img-top" alt="" />
-                    <div className="card-body bg-body-card">
-                        <h5 className="card-title">{store.people !== null ? store.people[2].name : "Personaje"}</h5>
-                        <p className="card-text">
-                            <p> Height: {store.people !== null ? store.people[2].gender : "Height"}</p>
-                            <p> Eye Color: {store.people !== null ? store.people[2].eye_color : "Eye"}</p>
-                            <p> Hair Color: {store.people !== null ? store.people[2].hair_color : "Hair"}</p>
-						</p>
-                        <p className="card-text">
-                            <button type="button" className="btn btn-outline-primary left">Learn More!</button>
-                            <button type="button" className="btn btn-outline-warning heart">&#10084;</button>
-                        </p>
-                    </div>
-                </div>
-                <div className="card">
-                    <img src="img\Darth Vader.jpg" className="card-img-top" alt="" />
-                    <div className="card-body bg-body-card">
-                        <h5 className="card-title">{store.people !== null ? store.people[3].name : "Personaje"}</h5>
-                        <p className="card-text">
-                            <p> Height: {store.people !== null ? store.people[3].gender : "Height"}</p>
-                            <p> Eye Color: {store.people !== null ? store.people[3].eye_color : "Eye"}</p>
-                            <p> Hair Color: {store.people !== null ? store.people[3].hair_color : "Hair"}</p>
-						</p>
-                        <p className="card-text">
-                            <button type="button" className="btn btn-outline-primary left">Learn More!</button>
-                            <button type="button" className="btn btn-outline-warning heart">&#10084;</button>
-                        </p>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div className="card-deck my-5">
-                <div className="card">
-                    <img src="img/Leia Organa.jpg" className="card-img-top" alt="" />
-                    <div className="card-body bg-body-card">
-                        <h5 className="card-title">{store.people !== null ? store.people[4].name : "Personaje"}</h5>
-                        <p className="card-text">
-                            <p> Height: {store.people !== null ? store.people[4].gender : "Height"}</p>
-                            <p> Eye Color: {store.people !== null ? store.people[4].eye_color : "Eye"}</p>
-                            <p> Hair Color: {store.people !== null ? store.people[4].hair_color : "Hair"}</p>
-						</p>
-                        <p className="card-text">
-                            <button type="button" className="btn btn-outline-primary left">Learn More!</button>
-                            <button type="button" className="btn btn-outline-warning heart">&#10084;</button>
-                        </p>
-                    </div>
-                </div>
-                <div className="card">
-                    <img src="img/Owen Lars.jpg" className="card-img-top" alt="" />
-                    <div className="card-body bg-body-card">
-                        <h5 className="card-title">{store.people !== null ? store.people[5].name : "Personaje"}</h5>
-                        <p className="card-text">
-                            <p> Height: {store.people !== null ? store.people[5].gender : "Height"}</p>
-                            <p> Eye Color: {store.people !== null ? store.people[5].eye_color : "Eye"}</p>
-                            <p> Hair Color: {store.people !== null ? store.people[5].hair_color : "Hair"}</p>
-						</p>
-                        <p className="card-text">
-                            <button type="button" className="btn btn-outline-primary left">Learn More!</button>
-                            <button type="button" className="btn btn-outline-warning heart">&#10084;</button>
-                        </p>
-                    </div>
-                </div>
-                <div className="card">
-                    <img src="img\Beru Whitesun lars.jpg" className="card-img-top" alt="" />
-                    <div className="card-body bg-body-card">
-                        <h5 className="card-title">{store.people !== null ? store.people[6].name : "Personaje"}</h5>
-                        <p className="card-text">
-                            <p> Height: {store.people !== null ? store.people[6].gender : "Height"}</p>
-                            <p> Eye Color: {store.people !== null ? store.people[6].eye_color : "Eye"}</p>
-                            <p> Hair Color: {store.people !== null ? store.people[6].hair_color : "Hair"}</p>
-						</p>
-                        <p className="card-text">
-                            <button type="button" className="btn btn-outline-primary left">Learn More!</button>
-                            <button type="button" className="btn btn-outline-warning heart">&#10084;</button>
-                        </p>
-                    </div>
-                </div>
-                <div className="card">
-                    <img src="img\R5-D4.jpg" className="card-img-top" alt="" />
-                    <div className="card-body bg-body-card">
-                        <h5 className="card-title">{store.people !== null ? store.people[7].name : "Personaje"}</h5>
-                        <p className="card-text">
-                            <p> Height: {store.people !== null ? store.people[7].gender : "Height"}</p>
-                            <p> Eye Color: {store.people !== null ? store.people[7].eye_color : "Eye"}</p>
-                            <p> Hair Color: {store.people !== null ? store.people[7].hair_color : "Hair"}</p>
-						</p>
-                        <p className="card-text">
-                            <button type="button" className="btn btn-outline-primary left">Learn More!</button>
-                            <button type="button" className="btn btn-outline-warning heart">&#10084;</button>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </>
-    );
-};
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+export default Characters;

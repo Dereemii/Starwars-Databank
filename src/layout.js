@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-import { Single } from "./js/views/single";
 import injectContext from "./js/store/appContext";
 
 import { Navbar } from "./js/component/navbar";
-import { Characters } from "./js/views/characters"
+import Characters  from "./js/views/characters"
+import Character from "./js/views/character";
+
 
 //create your first component
 export const Layout = () => {
@@ -19,7 +19,7 @@ export const Layout = () => {
 					<Navbar />
 					<Switch>
 						<Route exact path="/" component={Characters} />
-						<Route path="/single/:theid" component={Single} />
+						<Route exact path="/character/:id" component={Character} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 			</BrowserRouter>
