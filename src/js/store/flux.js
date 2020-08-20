@@ -38,7 +38,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({
 					...store.favorites
 				})
-				/* console.log(store.favorites) */
 			}	
 	},
 };

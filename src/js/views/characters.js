@@ -10,7 +10,6 @@ function Characters() {
 
   return (
     <div className="container">
-    <h1 className="characters text-white">Characters <i className="swg swg-lightsabers  swg-6x m-0 "></i></h1>
       <div className="row row-col-5 row-col-5-sm-2 row-col-sm-4 pt-4">
         {store.people.map((item, index,) => (
           <div className="people col-3 mb-4" key={item.name}>

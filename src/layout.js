@@ -5,6 +5,8 @@ import injectContext from "./js/store/appContext";
 import { Navbar } from "./js/component/navbar";
 import Characters  from "./js/views/characters"
 import Character from "./js/views/character";
+import Planets from "./js/views/planets";
+import Planet from "./js/views/planet";
 
 
 //create your first component
@@ -20,6 +22,7 @@ export const Layout = () => {
 					<Switch>
 						<Route exact path="/" component={Characters} />
 						<Route exact path="/character/:id" component={Character} />
+						<Route exact path="/planets" component={Planets} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 			</BrowserRouter>
